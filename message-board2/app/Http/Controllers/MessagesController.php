@@ -52,8 +52,10 @@ class MessagesController extends Controller
         //input('カラム')でリクエストクラスに入った値を取得すr
         $message->content = $request->input('content');
         $originalimage =  $request->file("image");
+        // store()からファイルパスが返ってくる
         $filePath=  $originalimage->store('public');
         $message->image =  str_replace('public/', '', $filePath);
+        //str_replaceメソッドで、filePathから、public以下を消去して、imageに格納
         // hasは、リクエストに値が存在しているかどうかチェックするための関数
         // $request->has('content')
         $message->save();
