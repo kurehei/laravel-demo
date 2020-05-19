@@ -10,10 +10,13 @@
       @endforeach
       <!--- Laravel CollectiveのFormを使用 --->
       <!--- @{!!-- --!!}は、渡されたデータの無害化を内部で行っている-->
-      {!! Form::model($message,['route' => 'messages.store']) !!}
+      {!! Form::model($message,['route' => 'messages.store','files' => true]) !!}
         <div class="form-group">
           {!! Form::label('content','メッセージ:') !!}
           {!! Form::text('content', null, ['class' => 'form-control']) !!}
+        </div>
+        <div>
+          {{ Form::file('image') }}
         </div>
         {!! Form::submit('投稿',['class' => 'btn btn-primary']) !!}
       {!! Form::close() !!}

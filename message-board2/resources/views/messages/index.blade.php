@@ -10,6 +10,7 @@
         <tr>
           <th>id</th>
           <th>message</th>
+          <th>画像アイコン</th>
         </tr>
       </thead>
       <tbody>
@@ -18,6 +19,9 @@
           <!--- --->
           <td>{!! link_to_route('messages.show','詳細ページへ',[$message->id]) !!}</td>
           <td>{{ $message->content }}</td>
+          @if ($message->image != null)
+          <td><img src="/storage/{{$message->image}}"style="width:32px; height:32px;"></td>
+          @endif
         </tr>
         @endforeach
       </tbody>

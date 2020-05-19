@@ -51,6 +51,9 @@ class MessagesController extends Controller
         // input()は、連想配列で返す
         //input('カラム')でリクエストクラスに入った値を取得すr
         $message->content = $request->input('content');
+        $originalimage =  $request->file("image");
+        $filePath=  $originalimage->store('public');
+        $message->image =  str_replace('public/', '', $filePath);
         // hasは、リクエストに値が存在しているかどうかチェックするための関数
         // $request->has('content')
         $message->save();

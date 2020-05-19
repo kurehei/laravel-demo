@@ -15,6 +15,10 @@
       <th>メッセージ</th>
       <td>{{ $message->content }}</td>
     </tr>
+    <tr>
+      <th>画像</th>
+      <td><img src="/storage/{{$message->image}}"style="width:38px; height:38px;"></td>
+    </tr>
   </table>
 
 {!! link_to_route('messages.edit', 'このメッセージを編集', [$message->id], ['class' => 'btn btn-light']) !!}
