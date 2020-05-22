@@ -17,7 +17,7 @@
     </tr>
     <tr>
       <th>画像</th>
-      <td><img src="/storage/{{$message->image}}"style="width:38px; height:38px;"></td>
+      <td><img src="{{$message->image}}"style="width:38px; height:38px;"></td>
     </tr>
   </table>
 

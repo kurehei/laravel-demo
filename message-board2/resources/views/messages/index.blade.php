@@ -20,7 +20,7 @@
           <td>{!! link_to_route('messages.show','詳細ページへ',[$message->id]) !!}</td>
           <td>{{ $message->content }}</td>
           @if ($message->image != null)
-          <td><img src="/storage/{{$message->image}}"style="width:32px; height:32px;"></td>
+          <td><img src="{{$message->image}}"style="width:32px; height:32px;"></td>
           @endif
         </tr>
         @endforeach

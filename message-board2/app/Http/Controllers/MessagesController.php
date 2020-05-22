@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Message;
+use Storage;
 
 class MessagesController extends Controller
 {
@@ -51,10 +52,11 @@ class MessagesController extends Controller
         // input()は、連想配列で返す
         //input('カラム')でリクエストクラスに入った値を取得すr
         $message->content = $request->input('content');
-        $originalimage =  $request->file("image");
+        $image =  $request->file("image");
+        $path = Storage::disk('s3')->putFile('myprefix', $image, 'public');
+        $message->image = Storage::disk('s3')->url($path);
         // store()からファイルパスが返ってくる
-        $filePath=  $originalimage->store('public');
-        $message->image =  str_replace('public/', '', $filePath);
+
         //str_replaceメソッドで、filePathから、public以下を消去して、imageに格納
         // hasは、リクエストに値が存在しているかどうかチェックするための関数
         // $request->has('content')
