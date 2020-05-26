@@ -46,14 +46,18 @@ class MessagesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'content' => 'required|max:20'
+            'content' => 'required|max:40',
+            'name' => 'required|max:30'
         ]);
         $message = new Message;
         // input()は、連想配列で返す
         //input('カラム')でリクエストクラスに入った値を取得すr
+        $message->name = $request->input('name');
         $message->content = $request->input('content');
         $image =  $request->file("image");
+        // $imageを、myprefixというディレクトリに'public'という名前ど保存
         $path = Storage::disk('s3')->putFile('myprefix', $image, 'public');
+        // 画像のurlを取得する
         $message->image = Storage::disk('s3')->url($path);
         // store()からファイルパスが返ってくる
 
